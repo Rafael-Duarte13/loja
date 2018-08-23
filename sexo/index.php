@@ -29,12 +29,25 @@ $sexos = $dao->findAll();
     <title>Sexos</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/all.css">
+    <style>
+        body {
+            background-color: lightseagreen;
+        }
+        div#div-style {
+            background-color: whitesmoke;
+            border: 3px solid black;
+            margin-top: 5px;
+        }
+        div#div-style-1 {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row" style="margin-top: 50px;">
+    <div class="container" id="div-style">
+        <div class="row" id="div-style-1">
             <!-- formulário -->
-            <div class="col-6">
+            <div class="col-4">
                 <fieldset>
                     <legend>Dados do sexo</legend>
                     <form action="index.php" method="post">
@@ -48,13 +61,13 @@ $sexos = $dao->findAll();
                             <input type="text" class="form-control" name="sigla" id="sigla" maxlength="1" required value="<?=$sexo->getSigla();?>">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block" name="salvar" value="salvar">Salvar</button>
+                            <button type="submit" class="btn btn-success btn-block" name="salvar" value="salvar"><i class="fas fa-save"></i> Salvar</button>
                         </div>
                     </form>
                 </fieldset>
             </div>
             <!-- tabela -->
-            <div class="col-6">
+            <div class="col-8">
                 <fieldset>
                     <legend>Lista de sexos</legend>
                     <table class="table table-striped table-hover">

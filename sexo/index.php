@@ -28,6 +28,7 @@ $sexos = $dao->findAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sexos</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/all.css">
 </head>
 <body>
     <div class="container">
@@ -74,13 +75,13 @@ $sexos = $dao->findAll();
                                     <td>
                                         <form action="index.php" method="post">
                                             <input type="hidden" name="id" value="<?=$sexo->getId();?>">
-                                            <button type="submit" class="btn btn-primary btn-sm" name="editar" value="editar">Editar</button>
+                                            <button type="submit" class="btn btn-primary" name="editar" value="editar"><i class="fas fa-edit"></i></button>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="remover-sexo.php" method="post">
                                             <input type="hidden" name="sex_id" value="<?=$sexo->getId();?>">
-                                            <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </tr>

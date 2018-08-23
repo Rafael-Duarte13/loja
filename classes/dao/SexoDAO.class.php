@@ -1,21 +1,12 @@
 <?php
-require_once __DIR__ . "/../modelo/Sexo.class.php";
+require_once(__DIR__ . "/./Conexao.class.php");
+require_once(__DIR__ . "/../modelo/Sexo.class.php");
+
 class SexoDAO {
-
-    private function getConexao() {
-        $servidor = "10.2.2.68:3306";
-        $usuario = "root";
-        $senha = "";
-        $banco = "db_loja_manha";
-        
-        $conexao = new PDO("mysql:host=$servidor;dbname=$banco", $usuario, $senha);
-
-        return $conexao;
-    }
 
     public function findAll() {
         $sql = "SELECT * FROM tb_sexos";
-        $statement = $this->getConexao()->prepare($sql);
+        $statement = Conexao::get()->prepare($sql);
         $statement->execute();
 
         $result = $statement->fetchAll();
@@ -32,7 +23,7 @@ class SexoDAO {
 
     public function findById($id) {
         $sql = "SELECT * FROM tb_sexos WHERE sex_id = $id";
-        $statement = $this->getConexao()->prepare($sql);
+        $statement = Conexao::get()->prepare($sql);
         $statement->execute();
 
         $row = $statement->fetch();
@@ -58,7 +49,7 @@ class SexoDAO {
             VALUES ('{$sexo->getNome()}', '{$sexo->getSigla()}')";
 
         try {
-            $this->getConexao()->exec($sql);
+            Conexao::get()->exec($sql);
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -69,7 +60,7 @@ class SexoDAO {
             WHERE sex_id = {$sexo->getId()}";
         
         try {
-            $this->getConexao()->exec($sql);
+            Conexao::get()->exec($sql);
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
@@ -79,7 +70,7 @@ class SexoDAO {
         $sql = "DELETE FROM tb_sexos WHERE sex_id = $id";
         
         try {
-            $this->getConexao()->exec($sql);
+            Conexao::get()->exec($sql);
         } catch(PDOException $e) {
             echo $e->getMessage();
         }

@@ -5,6 +5,21 @@ require_once "classes/dao/SexoDAO.class.php";
 $dao = new SexoDAO();
 
 /*
+    //Mostrando todos os dados
+    $dao = new SexoDAO();
+    $sexos = $dao->findAll();
+
+    foreach ($sexos as $sexo) {
+        echo("{$sexo->getId()} - {$sexo->getNome()} ");
+    }
+    
+    //Mostrando apenas 1 dado
+    $dao = new SexoDAO();
+    $sexo = $dao->findById(2);
+    echo("<br> {$sexo->getId()} - {$sexo->getNome()} - {$sexo->getSigla()} <br>");
+
+/*
+
 $sexo = new Sexo();
 $sexo->setNome('teste');
 $sexo->setSigla('t');

@@ -36,4 +36,4 @@ $sexo->setSigla('T');
 $dao->update($sexo);
 */
 
-$dao->remove(5);
+// $dao->remove(5);

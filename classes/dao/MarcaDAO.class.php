@@ -36,38 +36,38 @@ class MarcaDAO {
     }
 
     public function save(Marca $marca) {
-        if ($marca->getId() == NULL) {
-            $this->insert($marca);
+        if (is_null($marca->getId())) {
+            return $this->insert($marca);
         } else {
-            $this->update($marca);
+            return $this->update($marca);
         }
     }
     
     private function insert(Marca $marca) {
-        $sql = "INSERT INTO tb_marcas (mar_nome)
-            VALUES (:nome)";
+        $sql = "INSERT INTO tb_marcas (mar_nome) VALUES (:nome)";
         try {
             $statement = Conexao::get()->prepare($sql);
-            $statement->bindParam(":nome", $marca->getNome());
+            $nome = $marca->getNome();
+            $statement->bindParam(':nome', $nome);
             $statement->execute();
-            return $this->findById($marca->getId());
-        } catch (PDOException $e) {
+            return $this->findById(Conexao::get()->lastInsertId());
+        } catch(PDOException $e) {
             echo $e->getMessage();
             return null;
         }
-        return $marca;
     }
 
     private function update(Marca $marca) {
-        $sql = "UPDATE tb_marcas 
-            SET mar_nome = :nome WHERE mar_id = :id";
+        $sql = "UPDATE tb_marcas SET mar_nome=:nome WHERE mar_id=:id";
         try {
             $statement = Conexao::get()->prepare($sql);
-            $statement->bindParam(":nome", $marca->getNome());
-            $statement->bindParam(":id", $marca->getId());
+            $nome = $marca->getNome();
+            $id = $marca->getId();
+            $statement->bindParam(':nome', $nome);
+            $statement->bindParam(':id', $id);
             $statement->execute();
-            return $this->findById($produto->getId());
-        } catch (PDOException $e) {
+            return $this->findById($id);
+        } catch(PDOException $e) {
             echo $e->getMessage();
             return null;
         }

@@ -50,44 +50,44 @@ class ProdutoDAO {
     }
 
     public function save(Produto $produto) {
-        if ($produto->getId() == NULL) {
-            $this->insert($produto);
+        if (is_null($produto->getId())) {
+            return $this->insert($produto);
         } else {
-            $this->update($produto);
+            return $this->update($produto);
         }
     }
     
     private function insert(Produto $produto) {
-        $sql = "INSERT INTO tb_produtos (pro_nome, pro_preco, pro_mar_id)
-            VALUES (:nome, :valor, :marca)";
-
+        $sql = "INSERT INTO tb_produtos (pro_nome, pro_preco, pro_mar_id) VALUES (:nome, :preco, :marca)";
         try {
+            $nome = $produto->getNome();
+            $preco = $produto->getValor();
+            $marca = $produto->getMarca()->getId();
             $statement = Conexao::get()->prepare($sql);
-            $statement->bindParam(":nome", $produto->getNome());
-            $statement->bindParam(":valor", $produto->getValor());
-            $statement->bindParam(":marca", $produto->getMarca()->getId());
+            $statement->bindParam(':nome', $nome);
+            $statement->bindParam(':preco', $preco);
+            $statement->bindParam(':marca', $marca);
             $statement->execute();
-            return $this->findById($produto->getId());
+            return $this->findById(Conexao::get()->lastInsertId());
         } catch(PDOException $e) {
             echo $e->getMessage();
             return null;
         }
-        return $produto;
     }
     
     private function update(Produto $produto) {
-        $sql = "UPDATE tb_produtos 
-            SET pro_nome = :nome, 
-                pro_preco = :valor, 
-                pro_mar_id = :marca
+        $sql = "UPDATE tb_produtos SET pro_nome = :nome, pro_preco = :preco, pro_mar_id = :marca 
             WHERE pro_id = :id";
-        
         try {
+            $nome = $produto->getNome();
+            $preco = $produto->getValor();
+            $marca = $produto->getMarca()->getId();
+            $id = $produto->getId();
             $statement = Conexao::get()->prepare($sql);
-            $statement->bindParam(":nome", $produto->getNome());
-            $statement->bindParam(":valor", $produto->getValor());
-            $statement->bindParam(":marca", $produto->getMarca()->getId());
-            $statement->bindParam(":id", $produto->getId());
+            $statement->bindParam(':nome', $nome);
+            $statement->bindParam(':preco', $preco);
+            $statement->bindParam(':marca', $marca);
+            $statement->bindParam(':id', $id);
             $statement->execute();
             return $this->findById($produto->getId());
         } catch(PDOException $e) {

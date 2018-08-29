@@ -44,6 +44,33 @@ $sexos = $dao->findAll();
     </style>
 </head>
 <body>
+    <div class="container-fluid">
+        <!-- Barra de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Botão responsivo -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+                <span class="navbar-toggler-icon"></span>
+            </button>    
+            <!-- Menus da navbar -->
+            <div class="collapse navbar-collapse" id="navbarSite">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php"><i class="fas fa-home"></i> HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../produto/index.php"><i class="fab fa-product-hunt"></i> PRODUTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../marca/index.php"><i class="fab fa-bandcamp"></i> MARCAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php"><i class="fas fa-transgender"></i> SEXOS</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
     <div class="container" id="div-style">
         <div class="row" id="div-style-1">
             <!-- formulário -->

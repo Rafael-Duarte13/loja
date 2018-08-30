@@ -1,42 +1,67 @@
+<?php
+include(__DIR__ . "/onLogado.php");
+
+$mensagem = "";
+if (isset($_SESSION['mensagem'])) {
+    $mensagem = $_SESSION['mensagem'];
+    session_destroy();
+}
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>HOME - LOJA ESPORTE</title>
+    <title>LOGIN - LOJA ESPORTE</title>
+    <link rel="icon" href="assets/img/icon1.png">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/all.css">
     <style>
         body {
             background-color: lightseagreen;
         }
+        div#div-style {
+            background-color: whitesmoke;
+            border: 3px solid black;
+            margin-top: 300px;
+        }
+        div#div-style-1 {
+            margin-top: 30px;
+        }
+        #img {
+            margin-left: 500px;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <!-- Barra de navegação -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- Botão responsivo -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
-                <span class="navbar-toggler-icon"></span>
-            </button>    
-            <!-- Menus da navbar -->
-            <div class="collapse navbar-collapse" id="navbarSite">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.php"><i class="fas fa-home"></i> HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produto/index.php"><i class="fab fa-product-hunt"></i> PRODUTOS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="marca/index.php"><i class="fab fa-bandcamp"></i> MARCAS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sexo/index.php"><i class="fas fa-transgender"></i> SEXOS</a>
-                    </li>
-                </ul>
+    <div class="container" id="div-style">
+        <div class="row" id="div-style-1">
+            <div class="col-12">
+                <div align="center">
+                    <img src="assets/img/icon2.png" alt="" height="80">
+                </div>
+                <fieldset>
+                    <legend>Login na loja</legend>
+                    <form action="valida.php" method="post">
+                        <div class="form-group">
+                            <label for="login">Usuário</label>
+                            <input type="text" class="form-control" name="login" id="login">
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" class="form-control" name="senha" id="senha">
+                        </div>
+                        <div class="mb-1" style="text-align: center; color: red;">
+                            <?=$mensagem?>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block" name="logar" value="logar">
+                                <i class="fas fa-sign-in-alt"></i> Logar
+                            </button>
+                        </div>
+                    </form>
+                </fieldset>
             </div>
-        </nav>
+        </div>
     </div>
 </body>
 </html>

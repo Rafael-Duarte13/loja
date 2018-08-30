@@ -54,9 +54,6 @@ $marcas = $dao->findAll();
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php"><i class="fas fa-home"></i> HOME</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../produto/index.php"><i class="fab fa-product-hunt"></i> PRODUTOS</a>
                     </li>
                     <li class="nav-item">
@@ -64,6 +61,12 @@ $marcas = $dao->findAll();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../sexo/index.php"><i class="fas fa-transgender"></i> SEXOS</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logoult.php"><i class="fas fa-angle-double-left"></i> DESLOGAR</a>
                     </li>
                 </ul>
             </div>

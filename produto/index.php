@@ -4,6 +4,8 @@ require_once(__DIR__ . "/../classes/dao/ProdutoDAO.class.php");
 require_once(__DIR__ . "/../classes/modelo/Marca.class.php");
 require_once(__DIR__ . "/../classes/dao/MarcaDAO.class.php");
 
+include(__DIR__ . "/../logado.php");
+
 $marcaDao = new MarcaDAO();
 $produtoDao = new ProdutoDAO();
 $produto = new Produto();
@@ -24,6 +26,10 @@ if (isset($_POST['salvar']) && $_POST['salvar'] == 'salvar') {
 
 if (isset($_POST['cancelar']) && $_POST['cancelar'] == 'cancelar') {
     header('location: index.php');
+}
+
+if (isset($_POST['buscar']) && $_POST['buscar'] == 'buscar') {
+    $produtoDao->findById($_POST['id_buscar']);
 }
 
 if (isset($_POST['editar']) && $_POST['editar'] == 'editar') {
@@ -70,9 +76,6 @@ $marcas = $marcaDao->findAll();
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php"><i class="fas fa-home"></i> HOME</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link active" href="index.php"><i class="fab fa-product-hunt"></i> PRODUTOS</a>
                     </li>
                     <li class="nav-item">
@@ -83,11 +86,11 @@ $marcas = $marcaDao->findAll();
                     </li>
                 </ul>
 
-                <!-- Ferramenta de busca -->
-                <form method="post" class="form-inline">
-                    <input class="form-control mr-1" type="search" placeholder="Buscar produto" value="<?=$produto->getId()?>">
-                    <button class="btn btn-outline-light" type="submit" name="buscas" value="buscar"><i class="fas fa-search"></i></button>
-                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logoult.php"><i class="fas fa-angle-double-left"></i> DESLOGAR</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -132,7 +135,7 @@ $marcas = $marcaDao->findAll();
                         </div>
                         <!-- Botão para salvar o produto -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block" name="salvar" value="salvar">
+                            <button type="submit" class="btn btn-success btn-block" name="salvar" value="salvar" onclick="return confirmaSalvar();">
                                 <i class="fas fa-save"></i> Salvar
                             </button>
                         </div>
@@ -175,7 +178,7 @@ $marcas = $marcaDao->findAll();
                                     <td>
                                         <form method="post">
                                             <input type="hidden" name="id_rem" value="<?=$produto->getId()?>">
-                                            <button type="submit" class="btn btn-danger" name="remover" value="remover"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="submit" class="btn btn-danger" name="remover" value="remover" onclick="return confirmaRemover();"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -185,6 +188,7 @@ $marcas = $marcaDao->findAll();
                </fieldset>
            </div>
        </div>
-   </div> 
+   </div>
+   <script src="../assets/js/produto.js"></script>
 </body>
 </html>

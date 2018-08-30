@@ -18,6 +18,9 @@ if (isset($_POST['salvar']) && $_POST['salvar'] == 'salvar') {
 if (isset($_POST['editar']) && $_POST['editar'] == 'editar') {
     $sexo = $dao->findById($_POST['id']);
 }
+if (isset($_POST['remover']) && $_POST['remover'] == 'remover') {
+    $dao->remove($_POST['sex_id']);
+}
 $sexos = $dao->findAll();
 ?>
 
@@ -55,9 +58,6 @@ $sexos = $dao->findAll();
             <div class="collapse navbar-collapse" id="navbarSite">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php"><i class="fas fa-home"></i> HOME</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../produto/index.php"><i class="fab fa-product-hunt"></i> PRODUTOS</a>
                     </li>
                     <li class="nav-item">
@@ -65,6 +65,12 @@ $sexos = $dao->findAll();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="index.php"><i class="fas fa-transgender"></i> SEXOS</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logoult.php"><i class="fas fa-angle-double-left"></i> DESLOGAR</a>
                     </li>
                 </ul>
             </div>
@@ -113,15 +119,15 @@ $sexos = $dao->findAll();
                                     <td><?=$sexo->getNome();?></td>
                                     <td><?=$sexo->getSigla();?></td>
                                     <td>
-                                        <form action="index.php" method="post">
+                                        <form method="post">
                                             <input type="hidden" name="id" value="<?=$sexo->getId();?>">
                                             <button type="submit" class="btn btn-primary" name="editar" value="editar"><i class="fas fa-edit"></i></button>
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="remover-sexo.php" method="post">
+                                        <form method="post">
                                             <input type="hidden" name="sex_id" value="<?=$sexo->getId();?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="submit" class="btn btn-danger" name="remover" value="remover"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </tr>

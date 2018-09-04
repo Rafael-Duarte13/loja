@@ -39,6 +39,7 @@ $sexos = $dao->findAll();
         div#div-style {
             background-color: whitesmoke;
             border: 3px solid black;
+            border-radius: 25px;
             margin-top: 5px;
         }
         div#div-style-1 {

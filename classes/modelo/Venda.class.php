@@ -31,7 +31,7 @@ class Venda {
     public function getCliente() {
         return $this->cliente;
     }
-    public function setCliente($cliente) {
+    public function setCliente(Cliente $cliente) {
         $this->cliente = $cliente;
     }
 
